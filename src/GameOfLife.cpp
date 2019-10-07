@@ -1,7 +1,25 @@
 #include <GameOfLife.h>
 #include <iostream>
+#include <vector>
 
 GameOfLife::GameOfLife(){
+	rows = 5;
+	cols = 5;
+
+	// make a vector called Cell
+	std::vector<Cell> temp;
+
+	for (int i = 0; i < rows; i++)
+	{
+		temp.clear();
+		for (int j = 0; j < cols; j++)
+		{
+			temp.push_back(Cell());
+		}
+		board.push_back(temp);
+	}
+	 
+
 
 }
 
@@ -18,13 +36,19 @@ void GameOfLife::advance(){
 
 }
 
-ucm::json GameOfLife::getBoard() const {
+ucm::json GameOfLife::getBoard(){
 	ucm::json result;
-	result.push_back({false, false, false, false, false});
-	result.push_back({false, false, false, false, false});
-	result.push_back({false, true, true, true, false});
-	result.push_back({false, false, false, false, false});
-	result.push_back({false, false, false, false, false});
+	ucm::json temp_json;
+
+	for (int i = 0; i < rows; i++)
+	{
+		temp_json.clear();
+		for (int j = 0; j < cols; j++)
+		{
+			temp_json.push_back(board[i][j].check_alivedead());
+		}
+		result.push_back(temp_json);
+	}
 	return result;
 }
 

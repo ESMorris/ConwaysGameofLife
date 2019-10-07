@@ -6,15 +6,24 @@
 #include <Cell.h>
 
 class GameOfLife{
+
+	
 public:
+
+	int rows;
+	int cols;
+	std::vector<std::vector<Cell>> board;
+
+
 	GameOfLife();
 	
 	void start();
+
 	void stop();
+
 	void advance();
 
-	ucm::json getBoard() const;
-
+	ucm::json getBoard();
 };
 
 #endif
