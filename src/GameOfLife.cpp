@@ -5,6 +5,7 @@
 GameOfLife::GameOfLife(){
 	rows = 5;
 	cols = 5;
+	running = false;
 
 	// make a vector called Cell
 	std::vector<Cell> temp;
@@ -18,21 +19,34 @@ GameOfLife::GameOfLife(){
 		}
 		board.push_back(temp);
 	}
-	 
 
-
+	// This is the starting position of the board
+	board[2][1].make_Alive();
+	board[2][2].make_Alive();
+	board[2][3].make_Alive();
 }
 
 
 void GameOfLife::start(){
+	running = true;
 
 }
 
 void GameOfLife::stop(){
+	running = false;
 	
 }
 
 void GameOfLife::advance(){
+	
+	// To advance the board I have to implement the rules of the game of life
+
+
+
+
+
+
+
 
 }
 

@@ -9,7 +9,7 @@ class GameOfLife{
 
 	
 public:
-
+	bool running;
 	int rows;
 	int cols;
 	std::vector<std::vector<Cell>> board;
