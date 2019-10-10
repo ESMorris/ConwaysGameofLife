@@ -7,7 +7,7 @@ GameOfLife::GameOfLife(){
 	cols = 5;
 	running = false;
 
-	// make a vector called Cell
+	// make a vector called temp
 	std::vector<Cell> temp;
 
 	for (int i = 0; i < rows; i++)
@@ -18,6 +18,7 @@ GameOfLife::GameOfLife(){
 			temp.push_back(Cell());
 		}
 		board.push_back(temp);
+		future_board.push_back(temp);
 	}
 
 	// This is the starting position of the board
@@ -38,13 +39,50 @@ void GameOfLife::stop(){
 }
 
 void GameOfLife::advance(){
+
+	for (int i = 1; i < rows - 1; i++)
+	{
+		for (int j = 1; j < cols - 1; j++)
+		{
+			// A counter to detect how many neighbours a certain cell has around it
+			alive_neighbours = 0;
+			
+			for (int k = -1; k <= 1; k++)
+			{
+				for (int l = -1; l <= 1; l++)
+				{
+					if ((board[i+k][j+l].check_alivedead() == true))
+					{
+						alive_neighbours++;
+					}
+				}
+			}
+			if (board[i][j].check_alivedead() == true)
+			{
+				alive_neighbours--;
+			}
+			// check rules of life
+			if ((board[i][j].check_alivedead() == true) && (alive_neighbours < 2))
+			{
+				future_board[i][j].make_Dead();
+			}
+			else if ((board[i][j].check_alivedead() == true) && (alive_neighbours > 3))
+			{
+				future_board[i][j].make_Dead();
+			}
+			else if ((board[i][j].check_alivedead() == false) && (alive_neighbours == 3))
+			{
+				future_board[i][j].make_Alive();
+			}
+			else
+			{
+				future_board[i][j] = board[i][j];
+			}
+		}
+	}
+	board = future_board;
 	
-	// To advance the board I have to implement the rules of the game of life
-
-
-
-
-
+	
 
 
 
