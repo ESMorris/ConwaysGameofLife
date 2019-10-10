@@ -13,7 +13,7 @@ public:
 	bool running;
 	int rows;
 	int cols;
-	// the alive neighbours variable is to check how many alive neighbours
+	// the alive neighbours variable is a counter to hold how many alive neighbours
 	// are next to another live cell
 	int alive_neighbours;
 	std::vector<std::vector<Cell>> board;
